@@ -5,6 +5,8 @@ class MembersIndexFacade
   end
 
   def member_count
+    service = WesterosService.new(@house_name)
+    service.count
     response = Faraday.get "http://westerosapi.herokuapp.com/api/v1/house/#{@house_name}?api_key=egg"
     JSON.parse(response.body)['data'][0]['attributes']['members'].count
   end

@@ -1,5 +1,0 @@
-describe Member do
-
-  
-
-end
