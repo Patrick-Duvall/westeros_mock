@@ -4,17 +4,16 @@ class WesterosService
     @house_name = house_name
   end
 
-  def count
-    conn.get("#{@house_name}") {api_key: {ENV['WESTEROS_KEY']}
-
-    require "pry"; binding.pry
+  def members
+    response = conn.get("/api/v1/house/#{@house_name}?api_key=#{ENV['WESTEROS_KEY']}")
+    JSON.parse(response.body)['data'][0]['attributes']['members']
   end
 
   private
 
   def conn
-    conn = Faraday.new(:url => "http://westerosapi.herokuapp.com/api/v1/ do |faraday|
-      faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
+    conn = Faraday.new(:url => "http://westerosapi.herokuapp.com") do |faraday|
+      faraday.adapter  Faraday.default_adapter  
     end
 
   end

@@ -6,15 +6,18 @@ class MembersIndexFacade
 
   def member_count
     service = WesterosService.new(@house_name)
-    service.count
-    response = Faraday.get "http://westerosapi.herokuapp.com/api/v1/house/#{@house_name}?api_key=egg"
-    JSON.parse(response.body)['data'][0]['attributes']['members'].count
+    members = service.members
+    members.count
   end
 
   def members
-    response = Faraday.get "http://westerosapi.herokuapp.com/api/v1/house/#{@house_name}?api_key=egg"
-    member_info = JSON.parse(response.body)['data'][0]['attributes']['members']
-    member_info.map{|info| Member.new(info)}
+    members = service.members
+    members.map{|info| Member.new(info)}
   end
 
+  private
+
+  def service
+    @service ||= WesterosService.new(@house_name)
+  end
 end

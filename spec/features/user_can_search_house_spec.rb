@@ -2,8 +2,6 @@ require "rails_helper"
 
 describe "as a user" do
   it "lets me search house members" do
-
-    # When I visit "/"
     visit '/'
     # And I select "Greyjoy" from the dropdown
     select "Greyjoy", :from => "q"
@@ -22,7 +20,6 @@ describe "as a user" do
     expect(page).to have_selector('.house-member-id', count: 7)
     expect(page).to have_content('Balon Greyjoy')
     expect(page).to have_content('ID: 38')
-    #
-    save_and_open_page
+
   end
 end
