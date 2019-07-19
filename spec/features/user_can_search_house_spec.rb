@@ -1,9 +1,12 @@
+require "rails_helper"
+
 describe "as a user" do
   it "lets me search house members" do
 
     # When I visit "/"
     visit '/'
     # And I select "Greyjoy" from the dropdown
+    save_and_open_page
     select "Greyjoy", :from => "organizationSelect"
     # And I click on "Get Members"
     click "Get Members"
