@@ -10,26 +10,19 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-default" role="navigation">
-      <div class="navbar-header">
-        <%= link_to "Members Search", root_path, class: "navbar-brand" %>
-      </div>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <%= form_tag :search, method: :get, class: "form-inline" do %>
-            <div class="form-group search-field">
-              <%= f.collection_select([
-      ['Stark', 'stark'],
-      ['Lannister', 'lannister'],
-      ['Targaryen', 'targaryen'],
-      ['Tyrell', 'tyrell'],
-      ['Greyjoy', 'greyjoy']
-    ] ) %>
-            </div>
-          <% end %>
-        </ul>
-      </div>
-    </nav>
+
+          <%= form_tag("/search", method: "get") do %>
+          <%= label_tag(:q, "Search for:") %>
+            <%= select_tag(:q, options_for_select([
+                ['Stark', 'stark'],
+                ['Lannister', 'lannister'],
+                ['Targaryen', 'targaryen'],
+                ['Tyrell', 'tyrell'],
+                ['Greyjoy', 'greyjoy']
+              ])) %>
+          <%= submit_tag("Search") %>
+        <% end %>
+
     <%= yield %>
   </body>
 </html>
