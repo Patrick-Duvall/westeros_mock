@@ -1,15 +1,15 @@
 class WesterosService
 
   def initialize(house_name)
-    @house_name = house_name.
+    @house_name = house_name
   end
 
   def members
-    require "pry"; binding.pry
 
-    JSON.parse(conn.get("/api/v1/house/").body)
-    response = conn.get("/api/v1/house/#{@house_name}")
-    JSON.parse(response.body)['data'][0]['attributes']['members']
+    data = JSON.parse(conn.get("/api/v1/house/").body)
+    id = data.select{|house| house['name'] == @house_name}[0]['id']
+    response = conn.get("/api/v1/house/#{id}")
+    JSON.parse(response.body)
   end
 
   private
