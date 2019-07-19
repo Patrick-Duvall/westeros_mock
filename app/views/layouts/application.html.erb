@@ -14,11 +14,11 @@
           <%= form_tag("/search", method: "get") do %>
           <%= label_tag(:q, "Search for:") %>
             <%= select_tag(:q, options_for_select([
-                ['Stark', 'stark'],
-                ['Lannister', 'lannister'],
-                ['Targaryen', 'targaryen'],
-                ['Tyrell', 'tyrell'],
-                ['Greyjoy', 'greyjoy']
+                ['Stark', 'Stark'],
+                ['Lannister', 'Lannister'],
+                ['Targaryen', 'Targaryen'],
+                ['Tyrell', 'Tyrell'],
+                ['Greyjoy', 'Greyjoy']
               ])) %>
           <%= submit_tag("Get Members") %>
         <% end %>
